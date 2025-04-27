@@ -3,7 +3,7 @@ use std::io::{self, BufRead};
 use std::path::Path;
 
 // Функция для проверки принадлежности точки кривой Розы Гвидо
-fn is_point_on_rosa_curve(r: f64, theta: f64, n: f64, a: f64) -> bool {
+fn ice(r: f64, theta: f64, n: f64, a: f64) -> bool {
     // Вычисляем ожидаемое значение r для данного угла theta
     let expected_r = a * (n * theta).sin();
     
@@ -32,14 +32,10 @@ fn main() -> io::Result<()> {
     let mut correct_predictions = 0;
     
     // Открываем файл с тестовыми данными
-    if let Ok(lines) = read_lines("rosa_test_points.txt") {
+    if let Ok(lines) = read_lines("test.txt") {
         for line in lines {
             if let Ok(line) = line {
-                // Пропускаем комментарии
-                if line.starts_with("#") {
-                    continue;
-                }
-                
+                                
                 // Парсим параметры кривой
                 if line.starts_with("n ") && !params_read {
                     let parts: Vec<&str> = line.split_whitespace().collect();
@@ -60,7 +56,7 @@ fn main() -> io::Result<()> {
                     let expected_on_curve = parts[2] == "1";
                     
                     // Проверяем принадлежность точки кривой
-                    let is_on_curve = is_point_on_rosa_curve(r, theta, n, a);
+                    let is_on_curve = ice(r, theta, n, a);
                     
                     // Выводим результат
                     println!(
@@ -78,7 +74,7 @@ fn main() -> io::Result<()> {
             }
         }
     } else {
-        println!("Не удалось открыть файл с тестовыми данными");
+        println!("Не удалось открыть файл ");
         return Ok(());
     }
     

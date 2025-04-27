@@ -4,7 +4,7 @@ use std::f64::consts::PI;
 use rand::Rng;
 
 fn main() -> std::io::Result<()> {
-    let mut file = File::create("rosa_test_points.txt")?;
+    let mut file = File::create("test.txt")?;
     let mut rng = rand::thread_rng();
     
     // Параметры для формирования тестовых данных
@@ -41,6 +41,6 @@ fn main() -> std::io::Result<()> {
         }
     }
     
-    println!("Файл с тестовыми данными создан: rosa_test_points.txt");
+    println!("Файл с тестовыми данными создан: test.txt");
     Ok(())
 }
